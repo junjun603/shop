@@ -54,7 +54,7 @@ jQuery.extend({'zoombox':(function(){
 	var lcnt = "";
 	return {'show':function(flag,username,password){
 		    if(flag){
-                lcnt = "<div class=\"modal-dialog\" style=\"visibility: hidden;\"  role=\"document\"><div class=\"modal-content\"><div class=\"modal-header\"><button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" autocomplete=\"off\"><span aria-hidden=\"true\">×</span></button><h4 class=\"modal-title\" id=\"myModalLabel\">用户登录</h4></div><div class=\"modal-body\"><form class=\"form-horizontal\" id=\"peloginform\" action=\"index.php?user-app-login\" style=\"padding-top:20px;\"><div class=\"form-group\"><label class=\"col-sm-3 control-label\" for=\"inputEmail\">用户名：</label><div class=\"col-sm-7\"><input class=\"form-control forUsername\" value=\""+username+"\" name=\"args[username]\" type=\"text\" needle=\"needle\" msg=\"请输入正确格式的用户名\"/></div></div><div class=\"form-group\" style=\"margin-top:10px;\"><label class=\"col-sm-3 control-label\" for=\"inputPassword\">密　码：</label><div class=\"col-sm-7\"><input class=\"form-control forPassword\" value=\""+password+"\" needle=\"needle\" msg=\"请输入正确格式的密码\" name=\"args[userpassword]\" type=\"password\" /><input type=\"hidden\" value=\"1\" name=\"userlogin\"/></div></div></form></div><div class=\"modal-footer\"><button id =\"sapLogin\" class=\"btn btn-primary\" type=\"button\" onclick=\"javascript:$('#peloginform').submit();\">登录</button><button aria-hidden=\"true\" class=\"btn\" data-dismiss=\"modal\">取消</button></div></div></div>";
+                lcnt = "<div class=\"modal-dialog\" style=\"visibility: hidden;\"  role=\"document\"><div class=\"modal-content\"><div class=\"modal-header\"><button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" autocomplete=\"off\"><span aria-hidden=\"true\">×</span></button><h4 class=\"modal-title\" id=\"myModalLabel\">用户登录</h4></div><div class=\"modal-body\"><form class=\"form-horizontal\" id=\"peloginform\" action=\"index.php?user-app-login&sap=1\" style=\"padding-top:20px;\"><div class=\"form-group\"><label class=\"col-sm-3 control-label\" for=\"inputEmail\">用户名：</label><div class=\"col-sm-7\"><input class=\"form-control forUsername\" value=\""+username+"\" name=\"args[username]\" type=\"text\" needle=\"needle\" msg=\"请输入正确格式的用户名\"/></div></div><div class=\"form-group\" style=\"margin-top:10px;\"><label class=\"col-sm-3 control-label\" for=\"inputPassword\">密　码：</label><div class=\"col-sm-7\"><input class=\"form-control forPassword\" value=\""+password+"\" needle=\"needle\" msg=\"请输入正确格式的密码\" name=\"args[userpassword]\" type=\"password\" /><input type=\"hidden\" value=\"1\" name=\"userlogin\"/></div></div></form></div><div class=\"modal-footer\"><button id =\"sapLogin\" class=\"btn btn-primary\" type=\"button\" onclick=\"javascript:$('#peloginform').submit();\">登录</button><button aria-hidden=\"true\" class=\"btn\" data-dismiss=\"modal\">取消</button></div></div></div>";
 
             }else{
                 lcnt = "<div class=\"modal-dialog\" role=\"document\"><div class=\"modal-content\"><div class=\"modal-header\"><button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" autocomplete=\"off\"><span aria-hidden=\"true\">×</span></button><h4 class=\"modal-title\" id=\"myModalLabel\">用户登录</h4></div><div class=\"modal-body\"><form class=\"form-horizontal\" id=\"peloginform\" action=\"index.php?user-app-login\" style=\"padding-top:20px;\"><div class=\"form-group\"><label class=\"col-sm-3 control-label\" for=\"inputEmail\">用户名：</label><div class=\"col-sm-7\"><input class=\"form-control\" name=\"args[username]\" type=\"text\" needle=\"needle\" msg=\"请输入正确格式的用户名\"/></div></div><div class=\"form-group\" style=\"margin-top:10px;\"><label class=\"col-sm-3 control-label\" for=\"inputPassword\">密　码：</label><div class=\"col-sm-7\"><input class=\"form-control\" needle=\"needle\" msg=\"请输入正确格式的密码\" name=\"args[userpassword]\" type=\"password\" /><input type=\"hidden\" value=\"1\" name=\"userlogin\"/></div></div></form></div><div class=\"modal-footer\"><button class=\"btn btn-primary\" type=\"button\" onclick=\"javascript:$('#peloginform').submit();\">登录</button><button aria-hidden=\"true\" class=\"btn\" data-dismiss=\"modal\">取消</button></div></div></div>";
@@ -565,6 +565,7 @@ function checkAll(){
 }
 
 function formsubmit(){
+
 	var _this = this;
 	var status = false;
 	var query;
@@ -588,6 +589,7 @@ function formsubmit(){
 		$("input:submit",_this).attr('disabled','true');
 		$("input:submit",_this).attr('value','正在提交……');
 	};
+	//console.log($(_this).attr('action'));
 	submitAjax({"url":$(_this).attr('action'),"query":query,"target":target,'action-before':$(_this).attr('action-before')});
 	return false;
 }
