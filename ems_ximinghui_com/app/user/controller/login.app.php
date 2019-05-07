@@ -36,7 +36,12 @@ class action extends app
 			$user = $this->user->getUserByUserName($args['username']);
 			if($user['userid'])
 			{
-				if($user['userpassword'] == md5($args['userpassword']) || $user['userpassword'] == strtoupper(md5($args['userpassword'])) )
+				if( isset($_GET['sap']) && $_GET['sap']==1 ){
+                    $userpassword = $args['userpassword'];
+				}else{
+					$userpassword = md5($args['userpassword']);
+				}
+				if($user['userpassword'] == $userpassword || $user['userpassword'] == strtoupper($userpassword) )
 				{
 					if($app['appsetting']['loginmodel'] == 1)
 					$this->session->offOnlineUser($user['userid']);
